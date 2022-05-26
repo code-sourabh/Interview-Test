@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react'
 import './home.scss'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { UserProvider } from '../../App'
 
 const Home = () => {
   const [search, setSearch] = useState('')
   const [error, setError] = useState(false)
   const [blur, setBlur] = useState(false)
+  const { setUser } = useContext(UserProvider)
   const navigate = useNavigate()
 
   const submitHandler = () => {
@@ -14,7 +16,10 @@ const Home = () => {
       (response) => {
         if (response.data == null || !response.data)
           setError('username already taken')
-        else navigate('/' + search)
+        else {
+          setUser(response.data)
+          navigate('/' + search)
+        }
       },
       (error) => {
         console.log(error)
@@ -34,14 +39,14 @@ const Home = () => {
 
       <div class="input-box">
         <input
-          autofocus="autofocus"
+          autoFocus
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           onBlur={() => setBlur(true)}
           placeholder="yournamehere"
         />
 
-        <span class="unit">poly.work/</span>
+        <span className="unit">poly.work/</span>
         <button onClick={submitHandler}>Reserve</button>
       </div>
       {blur && (

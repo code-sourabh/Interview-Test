@@ -1,16 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { UserProvider } from '../../App'
 
 const Profile = () => {
-  const [user, setUser] = useState({})
-  const username = useParams().username
-  useEffect(() => {
-    axios.get('http://localhost:8080/api/' + username).then(
-      (response) => setUser(response.data),
-      (error) => console.log(error),
-    )
-  }, [])
+  const user = useContext(UserProvider)
   return <div>{JSON.stringify(user)}</div>
 }
 
