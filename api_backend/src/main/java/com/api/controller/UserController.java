@@ -26,6 +26,7 @@ public class UserController {
 		
 		User user = restTemplate.getForObject(url, User.class);
 		System.out.println(user);
+		if(user.status.equals("error")) return null;
 		
 		
 		

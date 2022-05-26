@@ -3,6 +3,7 @@ package com.api.entity;
 import java.util.Map;
 
 public class User {
+	public String status;
 	private int totalSolved;
 	private int totalQuestions;
 	private int easySolved;
@@ -25,6 +26,7 @@ public class User {
 			int hardSolved, int totalHard, double acceptanceRate, int ranking, int contributionPoints, int reputation,
 			Map<String, Integer> submissionCalendar) {
 		super();
+		this.status=status;
 		this.totalSolved = totalSolved;
 		this.totalQuestions = totalQuestions;
 		this.easySolved = easySolved;
